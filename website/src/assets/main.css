@@ -1,0 +1,77 @@
+@import './base.css';
+@import 'primeicons/primeicons.css';
+@font-face {
+  font-family: 'SaucerBB';
+  src: local('SaucerBB'), url('/saucer-bb.regular.ttf');
+}
+
+#app {
+  font-weight: normal;
+}
+
+
+.p-timeline-event-opposite {
+  display: none !important;
+}
+
+.p-timeline-event-marker {
+  border-radius: 0px !important;
+  background: none !important;
+  border-color: #3f3f46 !important;
+}
+
+.p-timeline-event-connector {
+  background: #3f3f46 !important;
+}
+
+.p-timeline-event-marker::before {
+  background: #ed6b35 !important;
+}
+
+.p-tag {
+  color: #ed6b35 !important;
+  background-color: #1a2a35 !important;
+}
+
+.p-chip {
+  margin-right: 0.25rem !important;
+  background: #27272a !important;
+  color: #ffffff !important;
+  padding: 5px !important;
+  border-radius: 3px !important;
+}
+
+.pi-resume-icons {
+  font-size: 2rem !important;
+  margin-right: 1rem;
+}
+
+.p-drawer {
+  color: inherit !important;
+  border: none !important;
+}
+
+.calculate.p-button {
+  background: #ed6b35 !important;
+  border: #ed6b35 !important;
+}
+
+.question.p-button {
+  background: #e15a21 !important;
+  border: #ed6b35 !important;
+}
+
+@media (max-width: 1024px) {
+  .p-tag {
+    font-size: 0.5rem !important;
+  }
+
+  .p-chip {
+    font-size: 0.5rem !important;
+  }
+
+  .pi-resume-icons {
+    font-size: 1rem !important;
+    margin-right: 0.5rem;
+  }
+}

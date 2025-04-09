@@ -1,0 +1,126 @@
+:root {
+    --black: #000;
+    --main-1: #88D600;
+    --main-2: #4C9E00;
+    --grey-1: #F1F0F2;
+    --grey-2: #DCDDDF;
+    --grey-3: #BEBEBE;
+    --grey-4: #828587;
+    --twilight: #226398;
+    --sky: #B8EDE2;
+    --denim: #465F70;
+    --barn: #8C1D23;
+    --earth: #482B17;
+    --harvest: #D47024;
+    --flaxen: #E1BD5F;
+}
+
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+body {
+    background: var(--grey-1);
+    /* background: linear-gradient(var(--main-1) 0%, var(--main-2) 100%); */
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    /* padding: 1rem; */
+    /* border-radius: 1rem; */
+    /* background-color: var(--grey-1); */
+    /* border: var(--grey-4) 2px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-title {
+    font-size: 5em;
+    text-align: center;
+    background-image: linear-gradient(90deg, var(--main-1) 0%, var(--main-2) 100%);
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+    /* color: var(--main-1); */
+}
+
+.subtitle {
+    font-size: 1em;
+    text-align: center;
+    /* color: var(--main-2); */
+}
+
+.decoration {
+    width: 100%;
+    border-radius: 2rem;
+}
+
+.line {
+    width: 100%;
+    height: 2px;
+    /* background: var(--black); */
+    background: linear-gradient(90deg, var(--main-1) 0%, var(--main-2) 100%);
+
+}
+
+.earth {
+    background-color: var(--earth);
+    box-shadow: var(--earth) 0 0 5px;
+    position: fixed;
+    bottom: -15%;
+    left: 5%;
+    height: 20%;
+}
+
+.barn {
+    background-color: var(--barn);
+    box-shadow: var(--barn) 0 0 5px;
+    position: fixed;
+    bottom: -17%;
+    left: -15%;
+    height: 25%;
+}
+
+.harvest {
+    background-color: var(--harvest);
+    box-shadow: var(--harvest) 0 0 5px;
+    position: fixed;
+    bottom: -15%;
+    left: -30%;
+    height: 30%;
+}
+
+.flaxen {
+    background-color: var(--flaxen);
+    box-shadow: var(--flaxen) 0 0 5px;
+    position: fixed;
+    bottom: -13%;
+    left: 30%;
+    height: 35%;
+}
+
+.twilight {
+    background-color: var(--twilight);
+    box-shadow: var(--twilight) 0 0 5px;
+    position: fixed;
+    top: -20%;
+    left: 30%;
+    height: 35%;
+}
+
+.sky {
+    background-color: var(--sky);
+    box-shadow: var(--sky) 0 0 5px;
+    position: fixed;
+    top: -25%;
+    left: -30%;
+    height: 35%;
+}
