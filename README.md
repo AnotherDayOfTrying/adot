@@ -1,4 +1,4 @@
-AnotherDayofTrying.Github.io
+ADOT
 ===
 
 Personal website featuring a path-finding algorithm visualizer in desktop, and a 3D render for mobile.
@@ -14,7 +14,7 @@ Personal website featuring a path-finding algorithm visualizer in desktop, and a
 
 <div align="center">
     <span>
-        <a href="https://anotherdayoftrying.github.io/">
+        <a href="https://adot.work/">
         <img alt="Static Badge" src="https://img.shields.io/badge/OPEN%20APP-%23430098.svg?style=for-the-badge&logo=github&logoColor=white"/>
         </a>
     </span>
