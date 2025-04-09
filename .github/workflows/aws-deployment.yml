@@ -20,9 +20,6 @@ jobs:
               working-directory: ./website
             - name: node build
               run: npm run build
-              env:
-                AWS_ACM: ${{ secrets.AWS_ACM }}
-                URL: ${{ env.URL }}
               working-directory: ./website
             - name: cache site
               uses: actions/cache@v4
@@ -52,6 +49,9 @@ jobs:
               run: npm i -g aws-cdk
             - name: run synth
               run: cdk synth
+              env:
+                AWS_ACM: ${{ secrets.AWS_ACM }}
+                URL: ${{ env.URL }}
               working-directory: ./infrastructure
     Deploy:
         runs-on: ubuntu-latest
@@ -78,4 +78,7 @@ jobs:
                 aws-region: 'us-east-2'
             - name: deploy
               run: cdk deploy --all --require-approval never
+              env:
+                AWS_ACM: ${{ secrets.AWS_ACM }}
+                URL: ${{ env.URL }}
               working-directory: ./infrastructure
