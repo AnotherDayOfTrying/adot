@@ -68,6 +68,9 @@ jobs:
               with:
                 path: ./dist
                 key: cache-${{ github.sha }}
+            - name: node install
+              run: npm ci
+              working-directory: ./infrastructure
             - name: install cdk
               run: npm i -g aws-cdk
             - name: setup aws cdk
