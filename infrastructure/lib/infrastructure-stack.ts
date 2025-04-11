@@ -27,7 +27,7 @@ export class InfrastructureStack extends cdk.Stack {
     const distribution = new cloudfront.Distribution(this, 'ADOTDistribution', {
       certificate: certificatemanager.Certificate.fromCertificateArn(this, 'ADOTCertificate', config.acm),
       defaultBehavior: {
-        origin: new cloudfrontorigins.S3StaticWebsiteOrigin(bucket),
+        origin: new cloudfrontorigins.S3Origin(bucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         originRequestPolicy: cloudfront.OriginRequestPolicy.CORS_S3_ORIGIN,
         responseHeadersPolicy: cloudfront.ResponseHeadersPolicy.CORS_ALLOW_ALL_ORIGINS_WITH_PREFLIGHT_AND_SECURITY_HEADERS,
@@ -50,11 +50,6 @@ export class InfrastructureStack extends cdk.Stack {
     //https://github.com/aws/aws-cdk/issues/21771
     // The stack named ADOTStack failed to deploy: UPDATE_ROLLBACK_COMPLETE: Resource handler returned message: "Invalid request provided: Exactly one of CustomOriginConfig, VpcOriginConfig and S3OriginConfig must be specified" (RequestToken: 16102ea0-f323-9453-35b6-f52b37c79158, HandlerErrorCode: InvalidRequest)
     const cfndistribution = distribution.node.defaultChild as cloudfront.CfnDistribution;
-
-    cfndistribution.addPropertyOverride(
-      'DistributionConfig.Origins.0.CustomOriginConfig',
-      undefined,
-    );
 
     cfndistribution.addPropertyOverride(
       'DistributionConfig.Origins.0.S3OriginConfig.OriginAccessIdentity',
