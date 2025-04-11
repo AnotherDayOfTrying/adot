@@ -19,7 +19,6 @@ export class InfrastructureStack extends cdk.Stack {
       bucketName: 'adot-website-bucket',
       publicReadAccess: false,
       versioned: true,
-      websiteIndexDocument: 'index.html',
       objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_ENFORCED,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       enforceSSL: true,
@@ -31,9 +30,10 @@ export class InfrastructureStack extends cdk.Stack {
         origin: new cloudfrontorigins.S3StaticWebsiteOrigin(bucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         originRequestPolicy: cloudfront.OriginRequestPolicy.CORS_S3_ORIGIN,
+  
       },
+      defaultRootObject: 'index.html',
       domainNames: [config.url],
-      
     })
 
     const oac = new cloudfront.CfnOriginAccessControl(this, 'ADOT-OAC', {
