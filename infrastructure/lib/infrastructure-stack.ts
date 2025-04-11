@@ -46,11 +46,14 @@ export class InfrastructureStack extends cdk.Stack {
       }
     })
 
+
+    //https://github.com/aws/aws-cdk/issues/21771
+    // The stack named ADOTStack failed to deploy: UPDATE_ROLLBACK_COMPLETE: Resource handler returned message: "Invalid request provided: Exactly one of CustomOriginConfig, VpcOriginConfig and S3OriginConfig must be specified" (RequestToken: 16102ea0-f323-9453-35b6-f52b37c79158, HandlerErrorCode: InvalidRequest)
     const cfndistribution = distribution.node.defaultChild as cloudfront.CfnDistribution;
 
     cfndistribution.addPropertyOverride(
       'DistributionConfig.Origins.0.S3OriginConfig.OriginAccessIdentity',
-      ''
+      undefined
     );
 
     cfndistribution.addPropertyOverride(
@@ -74,19 +77,6 @@ export class InfrastructureStack extends cdk.Stack {
         resources: [bucket.bucketArn + '/*'],
       })
     );
-
-    //If tags for the custom s3 resources are provided, we attempt to tag them
-
-    const cr = cdk.Stack.of(this).node.tryFindChild(
-      'Custom::S3AutoDeleteObjectsCustomResourceProvider'
-    );
-
-    if (cr !== undefined) {
-      const lambdaFn = cr.node.findChild('Handler') as cloudfront.CfnFunction;
-      const role = cr.node.findChild('Role') as CfnRole;
-      lambdaFn.addPropertyOverride('Tags', this.tags.renderedTags);
-      role.addPropertyOverride('Tags', this.tags.renderedTags);
-    }
 
     new s3deploy.BucketDeployment(this, 'ADOTDeployment', {
       destinationBucket: bucket,
