@@ -30,7 +30,7 @@ export class InfrastructureStack extends cdk.Stack {
         origin: new cloudfrontorigins.S3StaticWebsiteOrigin(bucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         originRequestPolicy: cloudfront.OriginRequestPolicy.CORS_S3_ORIGIN,
-  
+        responseHeadersPolicy: cloudfront.ResponseHeadersPolicy.CORS_ALLOW_ALL_ORIGINS_WITH_PREFLIGHT_AND_SECURITY_HEADERS,
       },
       defaultRootObject: 'index.html',
       domainNames: [config.url],
@@ -52,13 +52,18 @@ export class InfrastructureStack extends cdk.Stack {
     const cfndistribution = distribution.node.defaultChild as cloudfront.CfnDistribution;
 
     cfndistribution.addPropertyOverride(
-      'DistributionConfig.Origins.0.S3OriginConfig.OriginAccessIdentity',
-      undefined
+      'DistributionConfig.Origins.0.CustomOriginConfig',
+      undefined,
     );
 
     cfndistribution.addPropertyOverride(
+      'DistributionConfig.Origins.0.S3OriginConfig.OriginAccessIdentity',
+      '',
+    )
+
+    cfndistribution.addPropertyOverride(
       'DistributionConfig.Origins.0.OriginAccessControlId',
-      oac.getAtt('Id')
+      oac.attrId,
     );
 
     bucket.addToResourcePolicy(
